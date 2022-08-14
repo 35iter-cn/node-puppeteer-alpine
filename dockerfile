@@ -16,5 +16,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -G pptruser pptruser && mkdir -p /home/pptruser/Downloads /app && chown -R pptruser:pptruser /home/pptruser && chown -R pptruser:pptruser /app
 
+RUN echo "pptruser ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/pptruser && chmod 0440 /etc/sudoers.d/pptruser
+
 # Run everything after as non-privileged user.
 USER pptruser
