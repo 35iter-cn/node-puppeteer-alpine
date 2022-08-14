@@ -1,5 +1,9 @@
 FROM node:14.18.1-alpine
 
+
+# https://stackoverflow.com/questions/49067625/how-can-i-use-chinese-in-alpine-headless-chrome
+RUN apk add wqy-zenhei --update-cache --repository https://nl.alpinelinux.org/alpine/edge/testing
+
 # Installs latest Chromium (100) package.
 RUN apk add --no-cache \
     chromium \
@@ -17,9 +21,9 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 RUN addgroup -S pptruser && adduser -S -G pptruser pptruser && mkdir -p /home/pptruser/Downloads /app && chown -R pptruser:pptruser /home/pptruser && chown -R pptruser:pptruser /app
 
 # https://wiki.alpinelinux.org/wiki/Setting_up_a_new_user
-RUN apk add doas
+# RUN apk add doas
 
-RUN echo "permit persist :pptruser" > /etc/doas.d/doas.conf
+# RUN echo "permit persist :pptruser" > /etc/doas.d/doas.conf
 
 # Run everything after as non-privileged user.
 USER pptruser
