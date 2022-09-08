@@ -18,7 +18,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Add user so we don't need --no-sandbox.
-RUN addgroup -S pptruser && adduser -S -G pptruser pptruser && mkdir -p /home/pptruser/Downloads /app && chown -R pptruser:pptruser /home/pptruser && chown -R pptruser:pptruser /app
+# https://gitlab.alpinelinux.org/alpine/aports/-/issues/5083#change-26720
+RUN addgroup -S pptruser && adduser -S -G pptruser -s /bin/sh pptruser && mkdir -p /home/pptruser/Downloads /app && chown -R pptruser:pptruser /home/pptruser && chown -R pptruser:pptruser /app
 
 # https://wiki.alpinelinux.org/wiki/Setting_up_a_new_user
 # RUN apk add doas
