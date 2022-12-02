@@ -4,6 +4,10 @@ FROM node:14.18.1-alpine
 # https://stackoverflow.com/questions/49067625/how-can-i-use-chinese-in-alpine-headless-chrome
 RUN apk add wqy-zenhei --update-cache --repository https://nl.alpinelinux.org/alpine/edge/testing
 
+# pnpm
+RUN sudo apk --no-cache add curl
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
 # Installs latest Chromium (100) package.
 RUN apk add --no-cache \
     chromium \
