@@ -5,7 +5,7 @@ FROM node:14.18.1-alpine
 RUN apk add wqy-zenhei --update-cache --repository https://nl.alpinelinux.org/alpine/edge/testing
 
 # pnpm
-RUN sudo apk --no-cache add curl
+RUN apk --no-cache add curl
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 # Installs latest Chromium (100) package.
