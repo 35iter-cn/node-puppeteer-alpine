@@ -1,0 +1,18 @@
+FROM node:16-bullseye-slim
+
+ADD souces.list /etc/apt/sources.list
+
+RUN apt-get update
+
+RUN \
+  apt-get install -y --no-install-recommends \
+  fonts-wqy-zenhei fonts-freefont-ttf libxss1 \
+  chromium
+
+ENV PUPPETEER_SKIP_DOWNLOAD=true \
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+  PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
+  TZ="Asia/Shanghai"
+
+USER node
+WORKDIR /home/node/app
